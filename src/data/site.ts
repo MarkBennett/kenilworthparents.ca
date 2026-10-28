@@ -24,6 +24,14 @@ export const site = {
   mission:
     'We bring together parents, guardians, and staff of Kenilworth School to support student learning and well-being. We build community, share information, and raise funds for programs, resources, and events that enrich the school experience for every child.',
 
+  presidentMessage: {
+    message:
+      'Welcome to Kenilworth! Our Parent Association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, every contribution makes a difference. We’d love to meet you—get in touch and find a way to get involved.',
+    // TODO: Confirm the president's name.
+    name: 'To be announced',
+    title: 'President',
+  },
+
   contact: {
     // TODO: Confirm the association's contact email address.
     email: 'info@kenilworthparents.ca',
