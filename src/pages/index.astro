@@ -17,6 +17,11 @@ const cityLine = [`${mailingAddress.city}, ${mailingAddress.province}`, mailingA
   </section>
 
   <div class="container">
+    <section id="mission" aria-labelledby="mission-heading">
+      <h2 id="mission-heading">Our Mission</h2>
+      <p>{mission}</p>
+    </section>
+
     <section class="president-message" aria-labelledby="president-message-heading">
       <div class="president-avatar" aria-hidden="true">P</div>
       <div>
@@ -27,25 +32,6 @@ const cityLine = [`${mailingAddress.city}, ${mailingAddress.province}`, mailingA
           <span>{presidentMessage.title}, Kenilworth School Parent Association</span>
         </p>
       </div>
-    </section>
-
-    <section id="mission" aria-labelledby="mission-heading">
-      <h2 id="mission-heading">Our Mission</h2>
-      <p>{mission}</p>
-    </section>
-
-    <section id="executives" aria-labelledby="executives-heading">
-      <h2 id="executives-heading">Executive Committee</h2>
-      <ul class="card-grid" role="list">
-        {
-          executives.map((exec) => (
-            <li class="card">
-              <p class="role">{exec.role}</p>
-              <p class="name">{exec.name}</p>
-            </li>
-          ))
-        }
-      </ul>
     </section>
 
     <section id="fundraisers" aria-labelledby="fundraisers-heading">
@@ -74,6 +60,20 @@ const cityLine = [`${mailingAddress.city}, ${mailingAddress.province}`, mailingA
           <p>There are no active fundraisers right now. Please check back soon.</p>
         )
       }
+    </section>
+
+    <section id="executives" aria-labelledby="executives-heading">
+      <h2 id="executives-heading">Executive Committee</h2>
+      <ul class="card-grid" role="list">
+        {
+          executives.map((exec) => (
+            <li class="card">
+              <p class="role">{exec.role}</p>
+              <p class="name">{exec.name}</p>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
     <section id="contact" aria-labelledby="contact-heading">
