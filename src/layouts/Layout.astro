@@ -27,14 +27,16 @@ const year = new Date().getFullYear();
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="/">{site.name}</a>
-        <nav aria-label="Primary">
-          <ul>
-            <li><a href="#mission">Mission</a></li>
-            <li><a href="#executives">Executive</a></li>
-            <li><a href="#fundraisers">Fundraisers</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+        <div class="header-actions">
+          <nav aria-label="Primary">
+            <ul>
+              <li><a href="/#mission">Mission</a></li>
+              <li><a href="/#executives">Executive</a></li>
+              <li><a href="/#fundraisers">Fundraisers</a></li>
+            </ul>
+          </nav>
+          <a class="contact-button" href="/contact">Contact Us</a>
+        </div>
       </div>
     </header>
 
@@ -45,6 +47,7 @@ const year = new Date().getFullYear();
     <footer class="site-footer">
       <div class="container">
         <p>&copy; {year} {site.name}</p>
+        <p><a href="/contact">Contact us</a></p>
       </div>
     </footer>
   </body>
@@ -77,6 +80,13 @@ const year = new Date().getFullYear();
     text-decoration: underline;
   }
 
+  .header-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+  }
+
   nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -95,6 +105,22 @@ const year = new Date().getFullYear();
     text-decoration-thickness: 2px;
   }
 
+  .contact-button {
+    display: inline-block;
+    padding: 0.375rem 1rem;
+    border: 2px solid #fff;
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--color-primary-dark);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .contact-button:hover {
+    background: transparent;
+    color: #fff;
+  }
+
   main:focus {
     outline: none;
   }
@@ -106,6 +132,13 @@ const year = new Date().getFullYear();
     background: var(--color-surface);
     color: var(--color-muted);
     font-size: 0.9375rem;
+  }
+
+  .site-footer .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
   }
 
   .site-footer p {

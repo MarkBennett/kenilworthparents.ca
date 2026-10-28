@@ -1,0 +1,281 @@
+---
+import { actions, isInputError } from 'astro:actions';
+import { env } from 'cloudflare:workers';
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+export const prerender = false;
+
+const siteKey = env.TURNSTILE_SITE_KEY;
+const sent = Astro.url.searchParams.has('sent');
+
+let values = { name: '', email: '', message: '' };
+let formError: string | undefined;
+let fieldErrors: Record<string, string[] | undefined> = {};
+
+if (Astro.request.method === 'POST') {
+  const formData = await Astro.request.formData();
+  values = {
+    name: String(formData.get('name') ?? ''),
+    email: String(formData.get('email') ?? ''),
+    message: String(formData.get('message') ?? ''),
+  };
+
+  const { error } = await Astro.callAction(actions.contact, formData);
+  if (!error) {
+    // Redirect after a successful POST so refreshing doesn't resubmit the form.
+    return Astro.redirect('/contact?sent', 303);
+  }
+
+  if (isInputError(error)) {
+    fieldErrors = error.fields;
+    formError = 'Please fix the errors below and try again.';
+  } else {
+    formError = error.message;
+  }
+  Astro.response.status = error.status;
+}
+
+const errorId = (field: string) => (fieldErrors[field]?.length ? `${field}-error` : undefined);
+---
+
+<Layout title={`Contact Us | ${site.name}`}>
+  <section class="hero" aria-labelledby="page-title">
+    <div class="container">
+      <h1 id="page-title">Contact Us</h1>
+      <p class="lead">
+        Have a question or idea? Send us a message using the form below, or email us at{' '}
+        <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+      </p>
+    </div>
+  </section>
+
+  <div class="container content">
+    {
+      sent ? (
+        <div class="notice success" role="status">
+          <h2>Thank you!</h2>
+          <p>Your message has been sent. We'll get back to you as soon as we can.</p>
+          <p>
+            <a href="/">Return to the home page</a>
+          </p>
+        </div>
+      ) : !siteKey ? (
+        <div class="notice error" role="alert">
+          <p>
+            The contact form is not available right now. Please email us at{' '}
+            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+          </p>
+        </div>
+      ) : (
+        <form method="POST" class="contact-form" novalidate>
+          {formError && (
+            <div class="notice error" role="alert">
+              <p>{formError}</p>
+            </div>
+          )}
+
+          <div class="field">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+              maxlength="100"
+              value={values.name}
+              aria-invalid={errorId('name') ? 'true' : undefined}
+              aria-describedby={errorId('name')}
+            />
+            {errorId('name') && <p class="field-error" id="name-error">{fieldErrors.name?.[0]}</p>}
+          </div>
+
+          <div class="field">
+            <label for="email">
+              Email <span class="optional">(optional)</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              maxlength="254"
+              value={values.email}
+              aria-invalid={errorId('email') ? 'true' : undefined}
+              aria-describedby={['email-hint', errorId('email')].filter(Boolean).join(' ')}
+            />
+            <p class="hint" id="email-hint">Include your email if you'd like us to reply.</p>
+            {errorId('email') && (
+              <p class="field-error" id="email-error">{fieldErrors.email?.[0]}</p>
+            )}
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="8"
+              required
+              minlength="10"
+              maxlength="5000"
+              aria-invalid={errorId('message') ? 'true' : undefined}
+              aria-describedby={errorId('message')}>{values.message}</textarea>
+            {errorId('message') && (
+              <p class="field-error" id="message-error">{fieldErrors.message?.[0]}</p>
+            )}
+          </div>
+
+          <div class="honeypot" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="cf-turnstile" data-sitekey={siteKey} data-action="contact"></div>
+
+          <button type="submit" class="button">Send message</button>
+        </form>
+      )
+    }
+  </div>
+
+  {
+    !sent && siteKey && (
+      <script
+        is:inline
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer
+      />
+    )
+  }
+</Layout>
+
+<style>
+  .hero {
+    padding-block: 3rem 2rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hero h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  .lead {
+    max-width: 45rem;
+    margin: 0;
+    font-size: 1.125rem;
+    color: var(--color-muted);
+  }
+
+  .content {
+    padding-top: 2.5rem;
+  }
+
+  .contact-form {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 40rem;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.375rem;
+  }
+
+  label {
+    font-weight: 600;
+  }
+
+  .optional,
+  .hint {
+    font-weight: 400;
+    color: var(--color-muted);
+  }
+
+  .hint,
+  .field-error {
+    margin: 0;
+    font-size: 0.9375rem;
+  }
+
+  .field-error {
+    color: var(--color-error);
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--color-muted);
+    border-radius: var(--radius);
+    font: inherit;
+    color: inherit;
+    background: var(--color-bg);
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  [aria-invalid='true'] {
+    border-color: var(--color-error);
+  }
+
+  .honeypot {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .button {
+    justify-self: start;
+    padding: 0.625rem 1.25rem;
+    border: 0;
+    border-radius: var(--radius);
+    background: var(--color-primary);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .button:hover {
+    background: var(--color-primary-dark);
+  }
+
+  .notice {
+    max-width: 40rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid;
+    border-radius: var(--radius);
+  }
+
+  .notice h2 {
+    margin: 0 0 0.5rem;
+  }
+
+  .notice p {
+    margin: 0;
+  }
+
+  .notice p + p {
+    margin-top: 0.5rem;
+  }
+
+  .success {
+    border-color: var(--color-success);
+    background: var(--color-success-bg);
+  }
+
+  .error {
+    border-color: var(--color-error);
+    background: var(--color-error-bg);
+  }
+</style>

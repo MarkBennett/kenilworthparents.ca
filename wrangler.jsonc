@@ -10,5 +10,33 @@
 	},
 	"observability": {
 		"enabled": true
-	}
+	},
+	"vars": {
+		// Public Cloudflare Turnstile site key used by the contact form.
+		// TODO: Replace with the site key from the Cloudflare dashboard (Turnstile > Add widget).
+		// The matching secret key must be set with `npx wrangler secret put TURNSTILE_SECRET_KEY`.
+		"TURNSTILE_SITE_KEY": "",
+		// Address contact form emails are sent from. Must be on a domain set up for
+		// Cloudflare Email Routing / Email Service.
+		"CONTACT_FROM_EMAIL": "website@kenilworthparents.ca"
+	},
+	"send_email": [
+		{
+			// Contact form submissions can only be delivered to this address.
+			// Keep in sync with `contact.email` in src/data/site.ts.
+			"name": "CONTACT_EMAIL",
+			"destination_address": "info@kenilworthparents.ca"
+		}
+	],
+	"ratelimits": [
+		{
+			// Limits contact form submissions per client IP address.
+			"name": "CONTACT_RATE_LIMITER",
+			"namespace_id": "1001",
+			"simple": {
+				"limit": 5,
+				"period": 60
+			}
+		}
+	]
 }
