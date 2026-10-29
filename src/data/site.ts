@@ -42,7 +42,8 @@ export type LineIconName =
   | 'heart'
   | 'gift'
   | 'calendar'
-  | 'users';
+  | 'users'
+  | 'clipboard';
 
 const KPA_NAME = 'Kenilworth Parent Association (KPA)';
 const SCHOOLZONE_URL = 'https://schoolzone.epsb.ca';
@@ -159,10 +160,17 @@ export const site = {
   // The ways parents can help, shown on the Get Involved page.
   waysToHelp: [
     {
+      name: 'Join a Monthly Meeting',
+      description:
+        'We meet every month at our office in École Kenilworth School to plan events and fundraisers. Come meet other parents and share your ideas; dates are posted on the SchoolZone calendar.',
+      icon: 'calendar',
+      cta: { label: 'See the SchoolZone Calendar', url: SCHOOLZONE_URL },
+    },
+    {
       name: 'Volunteer at a Fundraiser',
       description:
         'Our fundraisers run on volunteers. The casino is the big one: it raises the majority of our budget, the shifts are simple, and a meal is supplied.',
-      icon: 'calendar',
+      icon: 'clipboard',
       cta: { label: 'Sign Up To Volunteer', url: '/contact' },
     },
     {
