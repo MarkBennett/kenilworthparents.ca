@@ -7,17 +7,24 @@ const { contact } = site;
 ---
 
 <Layout title={`Contact Us | ${site.name}`}>
-    <section class="border-b border-border bg-surface pt-12 pb-8" aria-labelledby="page-title">
+    <section
+        class="border-b border-border bg-surface pt-12 pb-8"
+        aria-labelledby="page-title"
+    >
         <div class="mx-auto w-full max-w-page px-5">
-            <h1 id="page-title" class="mb-3 text-3xl/tight font-bold md:text-4xl/tight">
+            <h1
+                id="page-title"
+                class="mb-3 text-3xl/tight font-bold md:text-4xl/tight"
+            >
                 Contact Us
             </h1>
             <p class="max-w-180 text-lg text-muted">
-                Questions, ideas, or want to volunteer? We’d love to hear from you.
+                Questions, ideas, or want to volunteer? We’d love to hear from
+                you.
             </p>
             <p class="mt-3 max-w-180 text-muted">
-                The KPA is independent of the school. For questions about your child or
-                school matters, please contact{" "}
+                The KPA is independent of the school. For questions about your
+                child or school matters, please contact{" "}
                 <a href={site.school.url}>{site.school.name}</a> directly.
             </p>
         </div>
@@ -26,7 +33,9 @@ const { contact } = site;
     <div class="mx-auto w-full max-w-page px-5">
         <div class="grid gap-6 pt-10 sm:grid-cols-2">
             <section aria-labelledby="email-heading">
-                <h2 id="email-heading" class="mb-2 text-2xl/tight font-bold">Email</h2>
+                <h2 id="email-heading" class="mb-2 text-2xl/tight font-bold">
+                    Email
+                </h2>
                 <p>
                     <a href={`mailto:${contact.email}`}>{contact.email}</a>
                 </p>
@@ -37,8 +46,9 @@ const { contact } = site;
                 </h2>
                 <OfficeAddress />
                 <p class="mt-4">
-                    Our office is in {site.school.name}, where we meet every month. Meeting
-                    dates and events are posted on our <a href="/events">event calendar</a>.
+                    Our office is in {site.school.name}, where we meet every
+                    month. Meeting dates and events are posted on the{" "}
+                    <a href="/events">school's calendar</a>.
                 </p>
             </section>
         </div>
