@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
-import MailingAddress from "../components/MailingAddress.astro";
+import OfficeAddress from "../components/OfficeAddress.astro";
 
 const { contact } = site;
 ---
@@ -31,11 +31,16 @@ const { contact } = site;
                     <a href={`mailto:${contact.email}`}>{contact.email}</a>
                 </p>
             </section>
-            <section aria-labelledby="mailing-address-heading">
-                <h2 id="mailing-address-heading" class="mb-2 text-2xl/tight font-bold">
-                    Mailing Address
+            <section aria-labelledby="office-heading">
+                <h2 id="office-heading" class="mb-2 text-2xl/tight font-bold">
+                    Office &amp; Mailing Address
                 </h2>
-                <MailingAddress />
+                <OfficeAddress />
+                <p class="mt-4">
+                    Our office is in {site.school.name}, where we meet every month. Meeting
+                    dates and events are posted on the{" "}
+                    <a href={site.schoolZoneUrl}>SchoolZone calendar</a>.
+                </p>
             </section>
         </div>
     </div>

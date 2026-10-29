@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
-import MailingAddress from '../components/MailingAddress.astro';
+import OfficeAddress from '../components/OfficeAddress.astro';
 
 interface Props {
   title?: string;
@@ -128,7 +128,10 @@ const current = (href: string) => (href === currentPath ? 'page' : undefined);
           <p>
             <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
           </p>
-          <MailingAddress />
+          <div>
+            <p class="font-semibold">Office &amp; mailing address</p>
+            <OfficeAddress />
+          </div>
         </div>
       </div>
     </footer>

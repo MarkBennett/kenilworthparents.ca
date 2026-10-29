@@ -7,7 +7,7 @@ An [Astro](https://astro.build) site deployed to [Cloudflare Workers](https://de
 ## Editing content
 
 All page content (mission, the president's message, what we do, ways to get involved,
-contact details, mailing address, executives and active fundraisers) lives in [`src/data/site.ts`](src/data/site.ts).
+contact details, office address, executives and active fundraisers) lives in [`src/data/site.ts`](src/data/site.ts).
 Items marked `TODO` still need to be confirmed.
 
 ## Commands

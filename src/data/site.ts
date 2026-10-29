@@ -79,9 +79,13 @@ export const site = {
     email: 'info@kenilworthparents.ca',
   },
 
-  mailingAddress: {
+  // Meeting dates and events are posted on the SchoolZone calendar.
+  schoolZoneUrl: SCHOOLZONE_URL,
+
+  // Our office is in the school, and it's also our mailing address.
+  officeAddress: {
     recipient: KPA_NAME,
-    lines: ['c/o École Kenilworth School', '7005 89 Ave NW'],
+    lines: ['École Kenilworth School', '7005 89 Ave NW'],
     city: 'Edmonton',
     province: 'AB',
     postalCode: 'T6B 0N3',
