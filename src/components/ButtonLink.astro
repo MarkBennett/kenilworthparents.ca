@@ -1,0 +1,25 @@
+---
+// A link styled as a button: solid blue for the main action, outlined for a secondary one.
+interface Props {
+    href: string;
+    variant?: "primary" | "secondary";
+    class?: string;
+}
+
+const { href, variant = "primary", class: className } = Astro.props;
+const variants = {
+    primary: "border-primary bg-primary text-white hover:border-primary-dark hover:bg-primary-dark hover:text-white",
+    secondary: "border-primary bg-white text-primary hover:bg-surface",
+};
+---
+
+<a
+    href={href}
+    class:list={[
+        "inline-block rounded-lg border-2 px-5 py-2 font-semibold no-underline",
+        variants[variant],
+        className,
+    ]}
+>
+    <slot />
+</a>

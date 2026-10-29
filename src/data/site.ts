@@ -20,13 +20,32 @@ export interface SupportArea {
   description: string;
   /** Optional spending figure shown as a badge, e.g. "$6,000+ a year". */
   figure?: string;
-  icon: SupportIcon;
+  icon: LineIconName;
 }
 
-/** The line icons drawn by src/components/SupportIcon.astro. */
-export type SupportIcon = 'laptop' | 'ticket' | 'book' | 'star' | 'heart' | 'gift';
+export interface WayToHelp {
+  name: string;
+  description: string;
+  icon: LineIconName;
+  cta: {
+    label: string;
+    url: string;
+  };
+}
+
+/** The line icons drawn by src/components/LineIcon.astro. */
+export type LineIconName =
+  | 'laptop'
+  | 'ticket'
+  | 'book'
+  | 'star'
+  | 'heart'
+  | 'gift'
+  | 'calendar'
+  | 'users';
 
 const KPA_NAME = 'Kenilworth Parent Association (KPA)';
+const SCHOOLZONE_URL = 'https://schoolzone.epsb.ca';
 
 export const site = {
   name: KPA_NAME,
@@ -84,7 +103,7 @@ export const site = {
       description:
         'Make a donation from the Fees section of SchoolZone. The school passes it on to the KPA to support everything we do.',
       dates: 'Any time',
-      cta: { label: 'Donate on SchoolZone', url: 'https://schoolzone.epsb.ca' },
+      cta: { label: 'Donate on SchoolZone', url: SCHOOLZONE_URL },
     },
   ] as Fundraiser[],
 
@@ -128,4 +147,29 @@ export const site = {
       icon: 'gift',
     },
   ] as SupportArea[],
+
+  // The ways parents can help, shown on the Get Involved page.
+  waysToHelp: [
+    {
+      name: 'Volunteer at a Fundraiser',
+      description:
+        'Our fundraisers run on volunteers. The casino is the big one: it raises the majority of our budget, the shifts are simple, and a meal is supplied.',
+      icon: 'calendar',
+      cta: { label: 'Sign Up To Volunteer', url: '/contact' },
+    },
+    {
+      name: 'Donate',
+      description:
+        'Donate any time from the Fees section of SchoolZone. The school passes your donation on to the KPA.',
+      icon: 'heart',
+      cta: { label: 'Donate on SchoolZone', url: SCHOOLZONE_URL },
+    },
+    {
+      name: 'Join the KPA or a Committee',
+      description:
+        'Help plan events and fundraisers alongside other parents. Get in touch and we’ll find a role that suits you.',
+      icon: 'users',
+      cta: { label: 'Get in Touch', url: '/contact' },
+    },
+  ] as WayToHelp[],
 };

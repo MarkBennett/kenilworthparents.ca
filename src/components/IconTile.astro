@@ -1,0 +1,40 @@
+---
+// A tile led by an icon and name, with an optional figure badge and call-to-action button.
+// Render inside a <ul role="list">.
+import type { LineIconName } from "../data/site";
+import LineIcon from "./LineIcon.astro";
+import ButtonLink from "./ButtonLink.astro";
+
+interface Props {
+    name: string;
+    description: string;
+    icon: LineIconName;
+    figure?: string;
+    cta?: { label: string; url: string };
+}
+
+const { name, description, icon, figure, cta } = Astro.props;
+---
+
+<li class="rounded-lg border border-border bg-white p-6">
+    <article class="flex h-full flex-col items-start">
+        <div class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary text-white">
+            <LineIcon name={icon} class="size-8" />
+        </div>
+        <h2 class="text-xl/tight font-bold">{name}</h2>
+        {figure && (
+            <p class="mt-2 rounded-full bg-surface px-3 py-0.5 text-sm font-semibold text-primary-dark">
+                {figure}
+            </p>
+        )}
+        <p class="mt-2 text-muted">{description}</p>
+        {cta && (
+            <p class="mt-auto pt-5">
+                <ButtonLink href={cta.url}>
+                    {cta.label}
+                    <span class="sr-only"> ({name})</span>
+                </ButtonLink>
+            </p>
+        )}
+    </article>
+</li>

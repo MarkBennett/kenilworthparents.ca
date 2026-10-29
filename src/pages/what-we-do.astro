@@ -2,7 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
 import SchoolLinked from "../components/SchoolLinked.astro";
-import SupportIcon from "../components/SupportIcon.astro";
+import IconTile from "../components/IconTile.astro";
+import ButtonLink from "../components/ButtonLink.astro";
 
 const { mission, supportAreas } = site;
 ---
@@ -19,22 +20,7 @@ const { mission, supportAreas } = site;
 
     <div class="mx-auto w-full max-w-page px-5">
         <ul class="grid gap-5 pt-10 sm:grid-cols-2 lg:grid-cols-3" role="list">
-            {supportAreas.map((area) => (
-                <li class="rounded-lg border border-border bg-white p-6">
-                    <article>
-                        <div class="mb-4 flex size-16 items-center justify-center rounded-full bg-primary text-white">
-                            <SupportIcon name={area.icon} class="size-8" />
-                        </div>
-                        <h2 class="text-xl/tight font-bold">{area.name}</h2>
-                        {area.figure && (
-                            <p class="mt-2 inline-block rounded-full bg-surface px-3 py-0.5 text-sm font-semibold text-primary-dark">
-                                {area.figure}
-                            </p>
-                        )}
-                        <p class="mt-2 text-muted">{area.description}</p>
-                    </article>
-                </li>
-            ))}
+            {supportAreas.map((area) => <IconTile {...area} />)}
         </ul>
 
         <section
@@ -42,14 +28,12 @@ const { mission, supportAreas } = site;
             aria-labelledby="fundraisers-cta-heading"
         >
             <h2 id="fundraisers-cta-heading" class="mb-4 text-xl/tight font-bold">
-                Our fundraisers make all of this possible.
+                Our fundraisers and volunteers make all of this possible.
             </h2>
-            <a
-                href="/fundraisers"
-                class="inline-block rounded-lg bg-primary px-5 py-2.5 font-semibold text-white no-underline hover:bg-primary-dark hover:text-white"
-            >
-                See our fundraisers
-            </a>
+            <div class="flex flex-wrap justify-center gap-3">
+                <ButtonLink href="/fundraisers">See our fundraisers</ButtonLink>
+                <ButtonLink href="/get-involved" variant="secondary">Get involved</ButtonLink>
+            </div>
         </section>
     </div>
 </Layout>
