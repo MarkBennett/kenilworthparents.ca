@@ -15,44 +15,46 @@ export interface Fundraiser {
   url?: string;
 }
 
+const KPA_NAME = 'Kenilworth School Parent Association (KPA)';
+
 export const site = {
-  name: 'Kenilworth School Parent Association',
-  shortName: 'Kenilworth Parents',
+  name: KPA_NAME,
+  shortName: 'KPA',
   description:
-    'The Kenilworth School of Edmonton Parent Association supports students, families, and staff through community-building and fundraising.',
+    `The ${KPA_NAME} supports students, families, and staff through community-building and fundraising.`,
 
   mission:
-    'We bring together parents, guardians, and staff of Kenilworth School to support student learning and well-being. We build community, share information, and raise funds for programs, resources, and events that enrich the school experience for every child.',
+    'We bring together parents, guardians, and staff of Kenilworth School to support student learning and well-being. We work to build community, share information, and raise funds for programs, resources, and events that enrich the school experience for every child.',
 
   presidentMessage: {
     message:
-      'Welcome to Kenilworth! Our Parent Association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, every contribution makes a difference. We’d love to meet you—get in touch and find a way to get involved.',
+      'Welcome to Kenilworth! Our Parent Association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, your contribution makes a difference. We’d love to meet you; get in touch and find a way to get involved.',
     // TODO: Confirm the president's name.
-    name: 'To be announced',
-    title: 'President',
+    name: 'Mark Bennett',
+    title: 'KPA President',
   },
 
   contact: {
-    // TODO: Confirm the association's contact email address.
-    email: 'info@kenilworthparents.ca',
+    email: 'kenilworth.parent.association@gmail.com',
   },
 
   // TODO: Replace with the association's confirmed mailing address.
   mailingAddress: {
-    recipient: 'Kenilworth School Parent Association',
-    lines: ['c/o Kenilworth School', 'Street address to be confirmed'],
+    recipient: KPA_NAME,
+    lines: ['c/o École Kenilworth School', '7005 89 Ave NW'],
     city: 'Edmonton',
     province: 'AB',
-    postalCode: '',
+    postalCode: 'T6B 0L5',
     country: 'Canada',
   },
 
   // TODO: Fill in the names of the current executive members.
   executives: [
-    { role: 'Chair', name: 'To be announced' },
-    { role: 'Vice-Chair', name: 'To be announced' },
-    { role: 'Treasurer', name: 'To be announced' },
-    { role: 'Secretary', name: 'To be announced' },
+    { role: 'Chair', name: 'Mark Bennett' },
+    { role: 'Vice-Chair', name: 'Amber Newton' },
+    { role: 'Treasurer', name: 'Nicole Barker' },
+    { role: 'Co-Secretary', name: 'Carrie McFetridge' },
+    { role: 'Co-Secretary', name: 'Avery Bernett-Johnson' },
   ] as Executive[],
 
   // TODO: List the fundraisers that are currently running.

@@ -1,253 +1,286 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { site } from '../data/site';
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
 
-const { mission, presidentMessage, contact, mailingAddress, executives, fundraisers } = site;
-const cityLine = [`${mailingAddress.city}, ${mailingAddress.province}`, mailingAddress.postalCode]
-  .filter(Boolean)
-  .join(' ');
+const {
+    mission,
+    presidentMessage,
+    contact,
+    mailingAddress,
+    executives,
+    fundraisers,
+} = site;
+const cityLine = [
+    `${mailingAddress.city}, ${mailingAddress.province}`,
+    mailingAddress.postalCode,
+]
+    .filter(Boolean)
+    .join(" ");
 ---
 
 <Layout>
-  <section class="hero" aria-labelledby="page-title">
+    <section class="hero" aria-labelledby="page-title">
+        <div class="container">
+            <h1 id="page-title">{site.name}</h1>
+            <p class="lead">{site.description}</p>
+        </div>
+    </section>
+
     <div class="container">
-      <h1 id="page-title">{site.name}</h1>
-      <p class="lead">{site.description}</p>
-    </div>
-  </section>
+        <section id="mission" aria-labelledby="mission-heading">
+            <h2 id="mission-heading">Our Mission</h2>
+            <p>{mission}</p>
+        </section>
 
-  <div class="container">
-    <section id="mission" aria-labelledby="mission-heading">
-      <h2 id="mission-heading">Our Mission</h2>
-      <p>{mission}</p>
-    </section>
+        <section
+            class="president-message"
+            aria-labelledby="president-message-heading"
+        >
+            <div class="president-avatar" aria-hidden="true">
+                P
+            </div>
+            <div>
+                <h2 id="president-message-heading">
+                    A message from our president
+                </h2>
+                <p>{presidentMessage.message}</p>
+                <p class="president-signature">
+                    <span>{presidentMessage.name}</span>
+                    <span>
+                        {presidentMessage.title}, {site.name}
+                    </span>
+                </p>
+            </div>
+        </section>
 
-    <section class="president-message" aria-labelledby="president-message-heading">
-      <div class="president-avatar" aria-hidden="true">P</div>
-      <div>
-        <h2 id="president-message-heading">A message from our president</h2>
-        <p>{presidentMessage.message}</p>
-        <p class="president-signature">
-          <span>{presidentMessage.name}</span>
-          <span>{presidentMessage.title}, Kenilworth School Parent Association</span>
-        </p>
-      </div>
-    </section>
+        <section id="fundraisers" aria-labelledby="fundraisers-heading">
+            <h2 id="fundraisers-heading">Active Fundraisers</h2>
+            {fundraisers.length > 0 ? (
+                <ul class="fundraisers" role="list">
+                    {fundraisers.map((fundraiser) => (
+                        <li class="card">
+                            <article>
+                                <h3>{fundraiser.name}</h3>
+                                {fundraiser.dates && (
+                                    <p class="dates">{fundraiser.dates}</p>
+                                )}
+                                <p>{fundraiser.description}</p>
+                                {fundraiser.url && (
+                                    <p>
+                                        <a href={fundraiser.url}>
+                                            Learn more
+                                            <span class="visually-hidden">
+                                                {" "}
+                                                about {fundraiser.name}
+                                            </span>
+                                        </a>
+                                    </p>
+                                )}
+                            </article>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>
+                    There are no active fundraisers right now. Please check back
+                    soon.
+                </p>
+            )}
+        </section>
 
-    <section id="fundraisers" aria-labelledby="fundraisers-heading">
-      <h2 id="fundraisers-heading">Active Fundraisers</h2>
-      {
-        fundraisers.length > 0 ? (
-          <ul class="fundraisers" role="list">
-            {fundraisers.map((fundraiser) => (
-              <li class="card">
-                <article>
-                  <h3>{fundraiser.name}</h3>
-                  {fundraiser.dates && <p class="dates">{fundraiser.dates}</p>}
-                  <p>{fundraiser.description}</p>
-                  {fundraiser.url && (
+        <section id="executives" aria-labelledby="executives-heading">
+            <h2 id="executives-heading">Executive Committee</h2>
+            <ul class="card-grid" role="list">
+                {executives.map((exec) => (
+                    <li class="card">
+                        <p class="role">{exec.role}</p>
+                        <p class="name">{exec.name}</p>
+                    </li>
+                ))}
+            </ul>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact Us</h2>
+            <div class="contact-grid">
+                <div>
+                    <h3>Email</h3>
                     <p>
-                      <a href={fundraiser.url}>
-                        Learn more<span class="visually-hidden"> about {fundraiser.name}</span>
-                      </a>
+                        <a href={`mailto:${contact.email}`}>{contact.email}</a>
                     </p>
-                  )}
-                </article>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>There are no active fundraisers right now. Please check back soon.</p>
-        )
-      }
-    </section>
-
-    <section id="executives" aria-labelledby="executives-heading">
-      <h2 id="executives-heading">Executive Committee</h2>
-      <ul class="card-grid" role="list">
-        {
-          executives.map((exec) => (
-            <li class="card">
-              <p class="role">{exec.role}</p>
-              <p class="name">{exec.name}</p>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact Us</h2>
-      <div class="contact-grid">
-        <div>
-          <h3>Email</h3>
-          <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
-        </div>
-        <div>
-          <h3>Mailing Address</h3>
-          <address>
-            {mailingAddress.recipient}<br />
-            {mailingAddress.lines.map((line) => <Fragment>{line}<br /></Fragment>)}
-            {cityLine}<br />
-            {mailingAddress.country}
-          </address>
-        </div>
-      </div>
-    </section>
-  </div>
+                </div>
+                <div>
+                    <h3>Mailing Address</h3>
+                    <address>
+                        {mailingAddress.recipient}
+                        <br />
+                        {mailingAddress.lines.map((line) => (
+                            <Fragment>
+                                {line}
+                                <br />
+                            </Fragment>
+                        ))}
+                        {cityLine}
+                        <br />
+                        {mailingAddress.country}
+                    </address>
+                </div>
+            </div>
+        </section>
+    </div>
 </Layout>
 
 <style>
-  .hero {
-    padding-block: 3rem 2rem;
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-  }
+    .hero {
+        padding-block: 3rem 2rem;
+        background: var(--color-surface);
+        border-bottom: 1px solid var(--color-border);
+    }
 
-  .hero h1 {
-    margin: 0 0 0.75rem;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-  }
+    .hero h1 {
+        margin: 0 0 0.75rem;
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+    }
 
-  .lead {
-    max-width: 45rem;
-    margin: 0;
-    font-size: 1.125rem;
-    color: var(--color-muted);
-  }
+    .lead {
+        max-width: 45rem;
+        margin: 0;
+        font-size: 1.125rem;
+        color: var(--color-muted);
+    }
 
-  section[id] {
-    padding-top: 2.5rem;
-    scroll-margin-top: 1rem;
-  }
+    section[id] {
+        padding-top: 2.5rem;
+        scroll-margin-top: 1rem;
+    }
 
-  .president-message {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    padding: 1.5rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: var(--color-surface);
-  }
+    .president-message {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-top: 2.5rem;
+        padding: 1.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        background: var(--color-surface);
+    }
 
-  .president-avatar {
-    display: grid;
-    flex: 0 0 3rem;
-    width: 3rem;
-    height: 3rem;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--color-primary);
-    color: #fff;
-    font-size: 1.25rem;
-    font-weight: 700;
-  }
+    .president-avatar {
+        display: grid;
+        flex: 0 0 3rem;
+        width: 3rem;
+        height: 3rem;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--color-primary);
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
 
-  .president-message h2 {
-    margin-bottom: 0.5rem;
-  }
+    .president-message h2 {
+        margin-bottom: 0.5rem;
+    }
 
-  .president-message > div:last-child > p {
-    margin: 0;
-  }
+    .president-message > div:last-child > p {
+        margin: 0;
+    }
 
-  .president-signature {
-    display: grid;
-    margin-top: 1rem !important;
-    color: var(--color-muted);
-    font-size: 0.9375rem;
-  }
+    .president-signature {
+        display: grid;
+        margin-top: 1rem !important;
+        color: var(--color-muted);
+        font-size: 0.9375rem;
+    }
 
-  .president-signature span:first-child {
-    color: var(--color-primary-dark);
-    font-weight: 600;
-  }
+    .president-signature span:first-child {
+        color: var(--color-primary-dark);
+        font-weight: 600;
+    }
 
-  h2 {
-    margin: 0 0 1rem;
-    font-size: 1.625rem;
-  }
+    h2 {
+        margin: 0 0 1rem;
+        font-size: 1.625rem;
+    }
 
-  h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.125rem;
-  }
+    h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.125rem;
+    }
 
-  ul[role='list'] {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+    ul[role="list"] {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
 
-  .card {
-    padding: 1.25rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    background: var(--color-bg);
-  }
+    .card {
+        padding: 1.25rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        background: var(--color-bg);
+    }
 
-  .card p {
-    margin: 0;
-  }
+    .card p {
+        margin: 0;
+    }
 
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-    gap: 1rem;
-  }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        gap: 1rem;
+    }
 
-  .role {
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
+    .role {
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+    }
 
-  .name {
-    font-size: 1.125rem;
-    font-weight: 600;
-  }
+    .name {
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
 
-  .fundraisers {
-    display: grid;
-    gap: 1rem;
-  }
+    .fundraisers {
+        display: grid;
+        gap: 1rem;
+    }
 
-  .fundraisers p + p {
-    margin-top: 0.5rem;
-  }
+    .fundraisers p + p {
+        margin-top: 0.5rem;
+    }
 
-  .dates {
-    font-weight: 600;
-    color: var(--color-muted);
-  }
+    .dates {
+        font-weight: 600;
+        color: var(--color-muted);
+    }
 
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    gap: 1.5rem;
-  }
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        gap: 1.5rem;
+    }
 
-  .contact-grid p {
-    margin: 0;
-  }
+    .contact-grid p {
+        margin: 0;
+    }
 
-  address {
-    font-style: normal;
-  }
+    address {
+        font-style: normal;
+    }
 
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
+    .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
 </style>
