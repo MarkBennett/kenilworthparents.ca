@@ -82,9 +82,6 @@ export const site = {
     email: 'info@kenilworthparents.ca',
   },
 
-  // Meeting dates and events are posted on the SchoolZone calendar.
-  schoolZoneUrl: SCHOOLZONE_URL,
-
   // The school's public SchoolZone calendar (a Google Calendar), shown on the Event Calendar page.
   calendar: {
     id: 'share.epsb.ca_o7t3e3els2io2otdrsta4j61fs@group.calendar.google.com',
