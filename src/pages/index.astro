@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
+import SchoolLinked from "../components/SchoolLinked.astro";
 
 const { mission, presidentMessage, contact, mailingAddress, fundraisers } =
     site;
@@ -26,7 +27,7 @@ const cityLine = [
     <div class="mx-auto w-full max-w-page px-5">
         <section id="mission" class="pt-10" aria-labelledby="mission-heading">
             <h2 id="mission-heading" class="mb-4 text-2xl/tight font-bold">Our Mission</h2>
-            <p>{mission}</p>
+            <p><SchoolLinked text={mission} /></p>
         </section>
 
         <section

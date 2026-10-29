@@ -1,0 +1,15 @@
+---
+// Renders text with each mention of the school ("Kenilworth School" or
+// "École Kenilworth School") linked to the school's website.
+import { site } from '../data/site';
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+// The capture group keeps the matches in the result, at the odd indexes.
+const parts = text.split(/((?:École )?Kenilworth School)/);
+---
+
+{parts.map((part, i) => (i % 2 ? <a href={site.school.url}>{part}</a> : part))}

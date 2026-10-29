@@ -21,7 +21,7 @@ export const site = {
     `The ${KPA_NAME} supports students, families, and staff through community-building and fundraising.`,
 
   mission:
-    'We bring together parents, guardians, and staff of Kenilworth School to support student learning and well-being. We work to build community, share information, and raise funds for programs, resources, and events that enrich the school experience for every child.',
+    'We bring together parents, guardians, and community of Kenilworth School to support student learning and well-being. We work to build community, share information, and raise funds for programs, resources, and events that enrich the school experience for every child.',
 
   presidentMessage: {
     message:
@@ -30,6 +30,12 @@ export const site = {
     title: 'President',
     /** Square headshot in src/assets; shown as a small round avatar. */
     photo: presidentPhoto,
+  },
+
+  // Mentions of the school in the mission are linked here automatically.
+  school: {
+    name: 'École Kenilworth School',
+    url: 'https://kenilworth.epsb.ca/',
   },
 
   contact: {
