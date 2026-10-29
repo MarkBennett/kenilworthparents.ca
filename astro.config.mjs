@@ -6,5 +6,12 @@ import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
   adapter: cloudflare(),
-  session: false
+  session: false,
+  vite: {
+    css: {
+      // Lightning CSS compiles @custom-media, letting breakpoints be named constants.
+      transformer: 'lightningcss',
+      lightningcss: { drafts: { customMedia: true } },
+    },
+  },
 });
