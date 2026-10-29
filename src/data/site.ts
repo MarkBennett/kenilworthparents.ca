@@ -47,6 +47,8 @@ export type LineIconName =
 
 const KPA_NAME = 'Kenilworth Parent Association (KPA)';
 const SCHOOLZONE_URL = 'https://schoolzone.epsb.ca';
+// What our monthly meetings are called on the school's calendar.
+const MEETING_TITLE = 'Kenilworth School Council/KPA Meeting';
 
 export const site = {
   name: KPA_NAME,
@@ -82,6 +84,13 @@ export const site = {
 
   // Meeting dates and events are posted on the SchoolZone calendar.
   schoolZoneUrl: SCHOOLZONE_URL,
+
+  // The school's public SchoolZone calendar (a Google Calendar), shown on the Event Calendar page.
+  calendar: {
+    id: 'share.epsb.ca_o7t3e3els2io2otdrsta4j61fs@group.calendar.google.com',
+    timeZone: 'America/Edmonton',
+    meetingTitle: MEETING_TITLE,
+  },
 
   // Our office is in the school, and it's also our mailing address.
   officeAddress: {
@@ -162,9 +171,9 @@ export const site = {
     {
       name: 'Join a Monthly Meeting',
       description:
-        'We meet every month at our office in École Kenilworth School to plan events and fundraisers. Come meet other parents and share your ideas; dates are posted on the SchoolZone calendar.',
+        `We meet every month at our office in École Kenilworth School to plan events and fundraisers. Come meet other parents and share your ideas. Look for “${MEETING_TITLE}” on our event calendar.`,
       icon: 'calendar',
-      cta: { label: 'See the SchoolZone Calendar', url: SCHOOLZONE_URL },
+      cta: { label: 'See the Event Calendar', url: '/events' },
     },
     {
       name: 'Volunteer at a Fundraiser',

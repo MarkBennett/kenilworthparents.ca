@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+
+const { calendar, school } = site;
+const calendarUrl = (mode?: "MONTH" | "AGENDA") => {
+    const params = new URLSearchParams({ src: calendar.id, ctz: calendar.timeZone });
+    if (mode) {
+        params.set("mode", mode);
+        params.set("showTitle", "0");
+        params.set("showPrint", "0");
+    }
+    return `https://calendar.google.com/calendar/embed?${params}`;
+};
+---
+
+<Layout title={`Event Calendar | ${site.name}`}>
+    <section class="border-b border-border bg-surface pt-12 pb-8" aria-labelledby="page-title">
+        <div class="mx-auto w-full max-w-page px-5">
+            <h1 id="page-title" class="mb-3 text-3xl/tight font-bold md:text-4xl/tight">
+                Event Calendar
+            </h1>
+            <p class="max-w-180 text-lg text-muted">
+                KPA events are hosted at {school.name} and shared on the school’s SchoolZone
+                calendar, which also lists school events.
+            </p>
+            <p class="mt-3 max-w-180 text-muted">
+                Our monthly meetings are listed as{" "}
+                <strong class="font-semibold text-text">“{calendar.meetingTitle}”</strong>.
+            </p>
+        </div>
+    </section>
+
+    <div class="mx-auto w-full max-w-page px-5 pt-10">
+        <!-- A month grid is unreadable on phones, so they get the agenda list instead. -->
+        <iframe
+            src={calendarUrl("MONTH")}
+            title="SchoolZone event calendar, month view"
+            loading="lazy"
+            class="hidden h-150 w-full rounded-lg border border-border md:block"></iframe>
+        <iframe
+            src={calendarUrl("AGENDA")}
+            title="SchoolZone event calendar, list of upcoming events"
+            loading="lazy"
+            class="h-125 w-full rounded-lg border border-border md:hidden"></iframe>
+        <p class="mt-4">
+            <a href={calendarUrl()}>Open the calendar in Google Calendar</a>
+        </p>
+    </div>
+</Layout>
