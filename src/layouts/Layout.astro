@@ -12,10 +12,11 @@ const year = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang="en-CA" class="motion-safe:scroll-smooth">
+<html lang="en-CA" class="scroll-pt-32 motion-safe:scroll-smooth md:scroll-pt-16">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="text-scale" content="scale" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -29,7 +30,7 @@ const year = new Date().getFullYear();
       Skip to main content
     </a>
 
-    <header class="bg-primary-dark text-white">
+    <header class="sticky top-0 z-50 bg-primary-dark text-white">
       <div
         class="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4"
       >
@@ -57,4 +58,15 @@ const year = new Date().getFullYear();
     </footer>
   </body>
 </html>
+
+<script>
+  // Keep anchor jumps clear of the sticky header as its height changes (wrapping, text size).
+  // The scroll-pt-* classes on <html> are the fallback if this doesn't run.
+  const header = document.querySelector('header');
+  if (header) {
+    new ResizeObserver(([entry]) => {
+      document.documentElement.style.scrollPaddingTop = `${entry.borderBoxSize[0].blockSize}px`;
+    }).observe(header);
+  }
+</script>
 
