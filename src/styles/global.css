@@ -53,3 +53,50 @@
     outline-offset: 2px;
   }
 }
+
+/*
+ * The mobile menu slides in from the right as its backdrop fades in, and back out on close.
+ * @starting-style sets where it opens from; allow-discrete keeps it visible while it closes.
+ */
+@layer components {
+  .menu-popover,
+  .menu-popover::backdrop {
+    transition-property: translate, background-color, display, overlay;
+    transition-duration: 200ms;
+    transition-timing-function: ease-out;
+    transition-behavior: allow-discrete;
+  }
+
+  .menu-popover {
+    translate: 100% 0;
+  }
+
+  .menu-popover::backdrop {
+    background-color: transparent;
+  }
+
+  .menu-popover:popover-open {
+    translate: 0 0;
+  }
+
+  .menu-popover:popover-open::backdrop {
+    background-color: rgb(0 0 0 / 0.4);
+  }
+
+  @starting-style {
+    .menu-popover:popover-open {
+      translate: 100% 0;
+    }
+
+    .menu-popover:popover-open::backdrop {
+      background-color: transparent;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-popover,
+    .menu-popover::backdrop {
+      transition: none;
+    }
+  }
+}

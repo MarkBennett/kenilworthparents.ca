@@ -9,6 +9,11 @@ interface Props {
 
 const { title = site.name, description = site.description } = Astro.props;
 const year = new Date().getFullYear();
+const navLinks = [
+  { href: '/#mission', label: 'Mission' },
+  { href: '/fundraisers', label: 'Fundraisers' },
+  { href: '/#contact', label: 'Contact' },
+];
 ---
 
 <!doctype html>
@@ -38,11 +43,48 @@ const year = new Date().getFullYear();
           <span class="md:hidden">{site.shortName}</span>
           <span class="hidden md:inline">{site.name}</span>
         </a>
-        <nav aria-label="Primary">
+        <nav aria-label="Primary" class="hidden md:block">
           <ul class="flex flex-wrap gap-x-5 gap-y-1 [&_a]:text-white [&_a:hover]:decoration-2">
-            <li><a href="/#mission">Mission</a></li>
-            <li><a href="/fundraisers">Fundraisers</a></li>
-            <li><a href="/#contact">Contact</a></li>
+            {navLinks.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+
+        <!-- Below md the links move into a popover, which needs no JavaScript to open or close. -->
+        <button
+          type="button"
+          popovertarget="menu"
+          class="flex items-center gap-2 rounded-lg px-3 py-2 font-semibold hover:bg-white/10 md:hidden"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="size-6 stroke-current" fill="none" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          Menu
+        </button>
+        <nav
+          id="menu"
+          popover
+          aria-label="Primary"
+          class="inset-y-0 right-0 left-auto m-0 h-auto w-[90%] max-w-none border-0 bg-primary-dark p-0 text-white menu-popover md:hidden"
+        >
+          <div class="flex justify-end px-5 pt-4">
+            <button
+              type="button"
+              popovertarget="menu"
+              popovertargetaction="hide"
+              class="flex items-center gap-2 rounded-lg px-3 py-2 font-semibold hover:bg-white/10"
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" class="size-6 stroke-current" fill="none" stroke-width="2" stroke-linecap="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+              Close
+            </button>
+          </div>
+          <ul class="px-5 pb-6 text-lg [&_a]:block [&_a]:py-3 [&_a]:text-white [&_a:hover]:decoration-2">
+            {navLinks.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
           </ul>
         </nav>
       </div>
@@ -74,6 +116,17 @@ const year = new Date().getFullYear();
         `${entry.borderBoxSize[0].blockSize}px`,
       );
     }).observe(header);
+  }
+
+  // Close the mobile menu when one of its links is clicked, so same-page links like
+  // /#contact don't leave it open. HTML can only close a popover from a button.
+  const menu = document.getElementById('menu');
+  if (menu) {
+    menu.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) {
+        menu.hidePopover();
+      }
+    });
   }
 </script>
 
