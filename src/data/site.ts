@@ -47,18 +47,11 @@ export const site = {
     country: 'Canada',
   },
 
-  // TODO: List the fundraisers that are currently running.
   fundraisers: [
-    {
-      name: 'Hot Lunch Program',
-      description:
-        'Order healthy hot lunches for your child. A portion of every order supports school programs.',
-      dates: 'Ongoing throughout the school year',
-    },
     {
       name: 'Bottle Drive',
       description:
-        'Drop off your refundable bottles and cans at the school to help fund classroom resources.',
+        'We host regular bottle drives where you can drop off your refundable bottles and cans at the school to help fund classroom resources.',
       dates: 'Dates to be announced',
     },
   ] as Fundraiser[],
