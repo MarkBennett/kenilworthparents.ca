@@ -1,5 +1,6 @@
 # kenilworthparents.ca
-Website for the Kenilworth School of Edmonton Parent Association
+Website for the Kenilworth Parent Association (KPA), an independent not-for-profit that supports
+École Kenilworth School in Edmonton. The KPA is not part of the school and does not represent it.
 
 An [Astro](https://astro.build) site deployed to [Cloudflare Workers](https://developers.cloudflare.com/workers/).
 

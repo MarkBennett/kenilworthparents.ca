@@ -1,4 +1,4 @@
-// Site content for the Kenilworth School Parent Association.
+// Site content for the Kenilworth Parent Association (KPA).
 // Update the values below to change what appears on the site.
 
 import presidentPhoto from '../assets/president-headshot.jpg';
@@ -51,14 +51,18 @@ export const site = {
   name: KPA_NAME,
   shortName: 'KPA',
   description:
-    `The ${KPA_NAME} supports students, families, and staff through community-building and fundraising.`,
+    `The ${KPA_NAME} is an independent not-for-profit that supports the students, families, and staff of École Kenilworth School through community-building and fundraising.`,
+
+  // Shown in the footer of every page.
+  independence:
+    'The KPA is an independent not-for-profit organization. It is not part of École Kenilworth School or Edmonton Public Schools (EPSB), and does not act for or represent either.',
 
   mission:
     'We bring together parents, guardians, and community of Kenilworth School to support student learning and well-being. We work to build community, share information, and raise funds for programs, resources, and events that enrich the school experience for every child.',
 
   presidentMessage: {
     message:
-      'Welcome to Kenilworth! Our Parent Association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, your contribution makes a difference. We’d love to meet you; find a way to get involved that suits you best!',
+      'Welcome to the Kenilworth Parent Association! Our association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, your contribution makes a difference. We’d love to meet you; find a way to get involved that suits you best!',
     name: 'Mark Bennett',
     title: 'President',
     /** Square headshot in src/assets; shown as a small round avatar. */
