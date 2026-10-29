@@ -45,8 +45,8 @@ const current = (href: string) => (href === currentPath ? 'page' : undefined);
         class="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4"
       >
         <a class="text-lg font-bold text-white no-underline hover:underline" href="/" aria-current={current('/')}>
-          <span class="md:hidden">{site.shortName}</span>
-          <span class="hidden md:inline">{site.name}</span>
+          <span class="lg:hidden">{site.shortName}</span>
+          <span class="hidden lg:inline">{site.name}</span>
         </a>
         <nav aria-label="Primary" class="hidden md:block">
           <ul class="-mr-2.5 flex flex-wrap gap-x-1 gap-y-1">
