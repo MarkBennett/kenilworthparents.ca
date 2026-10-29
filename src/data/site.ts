@@ -76,7 +76,7 @@ export const site = {
   },
 
   contact: {
-    email: 'kenilworth.parent.association@gmail.com',
+    email: 'info@kenilworthparents.ca',
   },
 
   mailingAddress: {
