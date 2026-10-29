@@ -1,5 +1,5 @@
 // Site content for the Kenilworth School Parent Association.
-// Update the values below to change what appears on the home page.
+// Update the values below to change what appears on the site.
 
 import presidentPhoto from '../assets/president-headshot.jpg';
 
@@ -14,6 +14,17 @@ export interface Fundraiser {
     url: string;
   };
 }
+
+export interface SupportArea {
+  name: string;
+  description: string;
+  /** Optional spending figure shown as a badge, e.g. "$6,000+ a year". */
+  figure?: string;
+  icon: SupportIcon;
+}
+
+/** The line icons drawn by src/components/SupportIcon.astro. */
+export type SupportIcon = 'laptop' | 'ticket' | 'book' | 'star' | 'heart' | 'gift';
 
 const KPA_NAME = 'Kenilworth Parent Association (KPA)';
 
@@ -68,5 +79,53 @@ export const site = {
       dates: 'Spring 2027',
       cta: { label: 'Sign Up To Volunteer', url: '/contact' },
     },
+    {
+      name: 'Donate Through SchoolZone',
+      description:
+        'Make a donation from the Fees section of SchoolZone. The school passes it on to the KPA to support everything we do.',
+      dates: 'Any time',
+      cta: { label: 'Donate on SchoolZone', url: 'https://schoolzone.epsb.ca' },
+    },
   ] as Fundraiser[],
+
+  // The ways we support the school, shown on the What We Do page.
+  supportAreas: [
+    {
+      name: 'Chromebooks',
+      description:
+        'We buy the shared Chromebooks that students in every grade use to learn, spending over $20,000 most years.',
+      figure: '$20,000+ most years',
+      icon: 'laptop',
+    },
+    {
+      name: 'Field Trips & Special Events',
+      description:
+        'Together with the school, we pay for most field trips and special events each year, including Quest Theatre’s Shakespeare play.',
+      figure: '$6,000+ a year',
+      icon: 'ticket',
+    },
+    {
+      name: 'Classroom & Library Resources',
+      description:
+        'We fund the tools that make lessons possible, from library resources to a new gym crash mat and a saw for the shop class.',
+      icon: 'book',
+    },
+    {
+      name: 'Clubs',
+      description:
+        'We help fund student clubs, giving kids more ways to explore their interests and make friends.',
+      icon: 'star',
+    },
+    {
+      name: 'Supporting Families',
+      description: 'We help make sure every student has what they need to learn.',
+      icon: 'heart',
+    },
+    {
+      name: 'Teacher & Staff Appreciation',
+      description:
+        'We thank Kenilworth’s teachers and staff with snacks and a fun celebration at the end of the year.',
+      icon: 'gift',
+    },
+  ] as SupportArea[],
 };

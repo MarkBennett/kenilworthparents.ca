@@ -11,7 +11,7 @@ interface Props {
 const { title = site.name, description = site.description } = Astro.props;
 const year = new Date().getFullYear();
 const navLinks = [
-  { href: '/#mission', label: 'Mission' },
+  { href: '/what-we-do', label: 'What We Do' },
   { href: '/fundraisers', label: 'Fundraisers' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -127,8 +127,8 @@ const navLinks = [
     }).observe(header);
   }
 
-  // Close the mobile menu when one of its links is clicked, so same-page links like
-  // /#mission don't leave it open. HTML can only close a popover from a button.
+  // Close the mobile menu when one of its links is clicked, so a link within the current
+  // page doesn't leave it open. HTML can only close a popover from a button.
   const menu = document.getElementById('menu');
   if (menu) {
     menu.addEventListener('click', (event) => {
