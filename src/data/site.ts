@@ -12,7 +12,7 @@ export interface Fundraiser {
   url?: string;
 }
 
-const KPA_NAME = 'Kenilworth School Parent Association (KPA)';
+const KPA_NAME = 'Kenilworth Parent Association (KPA)';
 
 export const site = {
   name: KPA_NAME,
