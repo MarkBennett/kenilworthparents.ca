@@ -58,7 +58,7 @@ export const site = {
 
   presidentMessage: {
     message:
-      'Welcome to Kenilworth! Our Parent Association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, your contribution makes a difference. We’d love to meet you; get in touch and find a way to get involved.',
+      'Welcome to Kenilworth! Our Parent Association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, your contribution makes a difference. We’d love to meet you; find a way to get involved that suits you best!',
     name: 'Mark Bennett',
     title: 'President',
     /** Square headshot in src/assets; shown as a small round avatar. */

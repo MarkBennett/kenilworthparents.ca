@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
 import SchoolLinked from "../components/SchoolLinked.astro";
 import FundraiserList from "../components/FundraiserList.astro";
+import ButtonLink from "../components/ButtonLink.astro";
 
 const { mission, presidentMessage } = site;
 ---
@@ -49,6 +50,9 @@ const { mission, presidentMessage } = site;
                     <span>
                         {presidentMessage.title}, {site.name}
                     </span>
+                </p>
+                <p class="mt-5">
+                    <ButtonLink href="/get-involved">Get Involved</ButtonLink>
                 </p>
             </div>
         </section>
