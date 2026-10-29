@@ -1,15 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
+import logo from "../assets/logo.png";
 
-const {
-    mission,
-    presidentMessage,
-    contact,
-    mailingAddress,
-    executives,
-    fundraisers,
-} = site;
+const { mission, presidentMessage, contact, mailingAddress, fundraisers } =
+    site;
 const cityLine = [
     `${mailingAddress.city}, ${mailingAddress.province}`,
     mailingAddress.postalCode,
@@ -20,9 +16,20 @@ const cityLine = [
 
 <Layout>
     <section class="hero" aria-labelledby="page-title">
-        <div class="container">
-            <h1 id="page-title">{site.name}</h1>
-            <p class="lead">{site.description}</p>
+        <div class="container hero-inner">
+            <Image
+                src={logo}
+                alt={`${site.shortName} logo`}
+                width={144}
+                height={144}
+                densities={[1, 2]}
+                class="hero-logo"
+                loading="eager"
+            />
+            <div>
+                <h1 id="page-title">{site.name}</h1>
+                <p class="lead">{site.description}</p>
+            </div>
         </div>
     </section>
 
@@ -88,18 +95,6 @@ const cityLine = [
             )}
         </section>
 
-        <section id="executives" aria-labelledby="executives-heading">
-            <h2 id="executives-heading">Executive Committee</h2>
-            <ul class="card-grid" role="list">
-                {executives.map((exec) => (
-                    <li class="card">
-                        <p class="role">{exec.role}</p>
-                        <p class="name">{exec.name}</p>
-                    </li>
-                ))}
-            </ul>
-        </section>
-
         <section id="contact" aria-labelledby="contact-heading">
             <h2 id="contact-heading">Contact Us</h2>
             <div class="contact-grid">
@@ -135,6 +130,18 @@ const cityLine = [
         padding-block: 3rem 2rem;
         background: var(--color-surface);
         border-bottom: 1px solid var(--color-border);
+    }
+
+    .hero-inner {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .hero-logo {
+        flex: 0 0 auto;
+        width: clamp(5.5rem, 18vw, 9rem);
+        height: auto;
     }
 
     .hero h1 {

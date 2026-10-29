@@ -1,11 +1,6 @@
 // Site content for the Kenilworth School Parent Association.
 // Update the values below to change what appears on the home page.
 
-export interface Executive {
-  role: string;
-  name: string;
-}
-
 export interface Fundraiser {
   name: string;
   description: string;
@@ -31,7 +26,7 @@ export const site = {
       'Welcome to Kenilworth! Our Parent Association is strongest when families share their time and ideas. Whether you can help at an event, support a fundraiser, or join a committee, your contribution makes a difference. We’d love to meet you; get in touch and find a way to get involved.',
     // TODO: Confirm the president's name.
     name: 'Mark Bennett',
-    title: 'KPA President',
+    title: 'President',
   },
 
   contact: {
@@ -47,15 +42,6 @@ export const site = {
     postalCode: 'T6B 0L5',
     country: 'Canada',
   },
-
-  // TODO: Fill in the names of the current executive members.
-  executives: [
-    { role: 'Chair', name: 'Mark Bennett' },
-    { role: 'Vice-Chair', name: 'Amber Newton' },
-    { role: 'Treasurer', name: 'Nicole Barker' },
-    { role: 'Co-Secretary', name: 'Carrie McFetridge' },
-    { role: 'Co-Secretary', name: 'Avery Bernett-Johnson' },
-  ] as Executive[],
 
   // TODO: List the fundraisers that are currently running.
   fundraisers: [
