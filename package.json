@@ -15,5 +15,11 @@
     "@astrojs/cloudflare": "^14.4.2",
     "astro": "^7.4.2",
     "wrangler": "^4.154.0"
+  },
+  "allowScripts": {
+    "workerd@1.20261019.1": true,
+    "workerd@1.20261023.1": true,
+    "esbuild@0.28.2": true,
+    "fsevents@2.3.3": true
   }
 }
