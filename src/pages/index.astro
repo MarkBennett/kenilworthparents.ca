@@ -3,9 +3,9 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
 import SchoolLinked from "../components/SchoolLinked.astro";
+import FundraiserList from "../components/FundraiserList.astro";
 
-const { mission, presidentMessage, contact, mailingAddress, fundraisers } =
-    site;
+const { mission, presidentMessage, contact, mailingAddress } = site;
 const cityLine = [
     `${mailingAddress.city}, ${mailingAddress.province}`,
     mailingAddress.postalCode,
@@ -58,37 +58,10 @@ const cityLine = [
 
         <section id="fundraisers" class="pt-10" aria-labelledby="fundraisers-heading">
             <h2 id="fundraisers-heading" class="mb-4 text-2xl/tight font-bold">Active Fundraisers</h2>
-            {fundraisers.length > 0 ? (
-                <ul class="grid gap-4" role="list">
-                    {fundraisers.map((fundraiser) => (
-                        <li class="rounded-lg border border-border bg-white p-5">
-                            <article class="space-y-2">
-                                <h3 class="text-lg/tight font-bold">{fundraiser.name}</h3>
-                                {fundraiser.dates && (
-                                    <p class="font-semibold text-muted">{fundraiser.dates}</p>
-                                )}
-                                <p>{fundraiser.description}</p>
-                                {fundraiser.url && (
-                                    <p>
-                                        <a href={fundraiser.url}>
-                                            Learn more
-                                            <span class="sr-only">
-                                                {" "}
-                                                about {fundraiser.name}
-                                            </span>
-                                        </a>
-                                    </p>
-                                )}
-                            </article>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>
-                    There are no active fundraisers right now. Please check back
-                    soon.
-                </p>
-            )}
+            <FundraiserList />
+            <p class="mt-4">
+                <a href="/fundraisers">See all fundraising details</a>
+            </p>
         </section>
 
         <section id="contact" class="pt-10" aria-labelledby="contact-heading">

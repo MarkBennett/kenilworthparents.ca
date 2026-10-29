@@ -1,7 +1,7 @@
 # kenilworthparents.ca
 Website for the Kenilworth School of Edmonton Parent Association
 
-A single-page [Astro](https://astro.build) site deployed to [Cloudflare Workers](https://developers.cloudflare.com/workers/).
+An [Astro](https://astro.build) site deployed to [Cloudflare Workers](https://developers.cloudflare.com/workers/).
 
 ## Editing content
 
@@ -13,6 +13,7 @@ Items marked `TODO` still need to be confirmed.
 
 | Command           | Action                                              |
 | :---------------- | :-------------------------------------------------- |
+| `nvm use`         | Switch to the Node version in `.nvmrc`              |
 | `npm install`     | Install dependencies                                |
 | `npm run dev`     | Start the local dev server at `localhost:4321`      |
 | `npm run build`   | Build the site to `./dist/`                         |

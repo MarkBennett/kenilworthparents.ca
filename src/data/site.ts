@@ -8,8 +8,11 @@ export interface Fundraiser {
   description: string;
   /** Human-readable date or date range, e.g. "November 1 – 30, 2026". */
   dates?: string;
-  /** Optional link for more information or to participate. */
-  url?: string;
+  /** Optional call-to-action button, e.g. to sign up or learn more. */
+  cta?: {
+    label: string;
+    url: string;
+  };
 }
 
 const KPA_NAME = 'Kenilworth Parent Association (KPA)';
@@ -57,6 +60,14 @@ export const site = {
       description:
         'We host regular bottle drives where you can drop off your refundable bottles and cans at the school to help fund classroom resources.',
       dates: 'Dates to be announced',
+    },
+    {
+      name: 'Casino',
+      // TODO: confirm the description, e.g. whether volunteers are needed and what the funds support.
+      description:
+        'Our casino fundraiser raises funds for programs, resources, and events at the school.',
+      dates: 'Spring 2027',
+      cta: { label: 'Sign Up To Volunteer', url: '/#contact' },
     },
   ] as Fundraiser[],
 };

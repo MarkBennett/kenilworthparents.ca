@@ -1,0 +1,43 @@
+---
+// The active fundraisers as tiles, each with an optional call-to-action button.
+import { site } from "../data/site";
+
+const { fundraisers } = site;
+---
+
+{fundraisers.length > 0 ? (
+    <ul class="grid gap-4" role="list">
+        {fundraisers.map((fundraiser) => (
+            <li class="rounded-lg border border-border bg-white p-5">
+                <article class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div class="space-y-2">
+                        <h3 class="text-lg/tight font-bold">{fundraiser.name}</h3>
+                        {fundraiser.dates && (
+                            <p class="font-semibold text-muted">{fundraiser.dates}</p>
+                        )}
+                        <p>{fundraiser.description}</p>
+                    </div>
+                    {fundraiser.cta && (
+                        <p class="flex-none text-center">
+                            <a
+                                href={fundraiser.cta.url}
+                                class="inline-block rounded-lg bg-primary px-5 py-2.5 font-semibold whitespace-nowrap text-white no-underline hover:bg-primary-dark hover:text-white"
+                            >
+                                {fundraiser.cta.label}
+                                <span class="sr-only">
+                                    {" "}
+                                    ({fundraiser.name})
+                                </span>
+                            </a>
+                        </p>
+                    )}
+                </article>
+            </li>
+        ))}
+    </ul>
+) : (
+    <p>
+        There are no active fundraisers right now. Please check back
+        soon.
+    </p>
+)}

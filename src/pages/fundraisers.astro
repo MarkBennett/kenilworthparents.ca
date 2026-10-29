@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/site";
+import FundraiserList from "../components/FundraiserList.astro";
+---
+
+<Layout title={`Fundraisers | ${site.name}`}>
+    <section class="border-b border-border bg-surface pt-12 pb-8" aria-labelledby="page-title">
+        <div class="mx-auto w-full max-w-page px-5">
+            <h1 id="page-title" class="mb-3 text-3xl/tight font-bold md:text-4xl/tight">
+                Fundraisers
+            </h1>
+            <p class="max-w-180 text-lg text-muted">
+                Funds raised by the {site.shortName} pay for programs, resources, and events
+                that enrich the school experience for every child.
+            </p>
+        </div>
+    </section>
+
+    <div class="mx-auto w-full max-w-page px-5">
+        <section class="pt-10" aria-labelledby="active-fundraisers-heading">
+            <h2 id="active-fundraisers-heading" class="mb-4 text-2xl/tight font-bold">
+                Active Fundraisers
+            </h2>
+            <FundraiserList />
+        </section>
+    </div>
+</Layout>
