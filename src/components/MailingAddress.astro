@@ -1,0 +1,26 @@
+---
+// The KPA's mailing address, one line per <br />.
+import { site } from "../data/site";
+
+const { mailingAddress } = site;
+const cityLine = [
+    `${mailingAddress.city}, ${mailingAddress.province}`,
+    mailingAddress.postalCode,
+]
+    .filter(Boolean)
+    .join(" ");
+---
+
+<address class="not-italic">
+    {mailingAddress.recipient}
+    <br />
+    {mailingAddress.lines.map((line) => (
+        <Fragment>
+            {line}
+            <br />
+        </Fragment>
+    ))}
+    {cityLine}
+    <br />
+    {mailingAddress.country}
+</address>

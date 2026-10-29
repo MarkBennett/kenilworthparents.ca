@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
+import MailingAddress from '../components/MailingAddress.astro';
 
 interface Props {
   title?: string;
@@ -12,7 +13,7 @@ const year = new Date().getFullYear();
 const navLinks = [
   { href: '/#mission', label: 'Mission' },
   { href: '/fundraisers', label: 'Fundraisers' },
-  { href: '/#contact', label: 'Contact' },
+  { href: '/contact', label: 'Contact' },
 ];
 ---
 
@@ -95,11 +96,19 @@ const navLinks = [
     </main>
 
     <footer class="mt-12 border-t border-border bg-surface py-6 text-sm text-muted">
-      <div class="mx-auto w-full max-w-page px-5">
-        <p>&copy; {year} {site.name}</p>
-        <p>
-          Supporting <a href={site.school.url}>{site.school.name}</a>
-        </p>
+      <div class="mx-auto grid w-full max-w-page gap-6 px-5 sm:grid-cols-2">
+        <div>
+          <p>&copy; {year} {site.name}</p>
+          <p>
+            Supporting <a href={site.school.url}>{site.school.name}</a>
+          </p>
+        </div>
+        <div class="space-y-2 sm:text-right">
+          <p>
+            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+          </p>
+          <MailingAddress />
+        </div>
       </div>
     </footer>
   </body>
@@ -119,7 +128,7 @@ const navLinks = [
   }
 
   // Close the mobile menu when one of its links is clicked, so same-page links like
-  // /#contact don't leave it open. HTML can only close a popover from a button.
+  // /#mission don't leave it open. HTML can only close a popover from a button.
   const menu = document.getElementById('menu');
   if (menu) {
     menu.addEventListener('click', (event) => {

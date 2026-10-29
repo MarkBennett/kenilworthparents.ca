@@ -66,7 +66,7 @@ export const site = {
       description:
         'The casino contributes the majority of our fundraising budget. Volunteering at the casino is simple, and a meal is supplied. If you pick one fundraiser to volunteer for, this is the one!',
       dates: 'Spring 2027',
-      cta: { label: 'Sign Up To Volunteer', url: '/#contact' },
+      cta: { label: 'Sign Up To Volunteer', url: '/contact' },
     },
   ] as Fundraiser[],
 };
