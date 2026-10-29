@@ -63,9 +63,8 @@ export const site = {
     },
     {
       name: 'Casino',
-      // TODO: confirm the description, e.g. whether volunteers are needed and what the funds support.
       description:
-        'Our casino fundraiser raises funds for programs, resources, and events at the school.',
+        'The casino contributes the majority of our fundraising budget. Volunteering at the casino is simple, and a meal is supplied. If you pick one fundraiser to volunteer for, this is the one!',
       dates: 'Spring 2027',
       cta: { label: 'Sign Up To Volunteer', url: '/#contact' },
     },
