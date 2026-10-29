@@ -20,4 +20,9 @@ Items marked `TODO` still need to be confirmed.
 | `npm run preview` | Preview the production build locally                |
 | `npm run deploy`  | Build and deploy to Cloudflare Workers (`wrangler`) |
 
+## Deploying
+
+Cloudflare deploys `main` automatically, so pushing to `main` publishes the live site.
+`npm run deploy` is only needed to deploy by hand.
+
 Worker settings are in [`wrangler.jsonc`](wrangler.jsonc).
