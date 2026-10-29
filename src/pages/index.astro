@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import { site } from "../data/site";
-import logo from "../assets/logo.png";
 
 const { mission, presidentMessage, contact, mailingAddress, fundraisers } =
     site;
@@ -16,21 +15,11 @@ const cityLine = [
 
 <Layout>
     <section class="border-b border-border bg-surface pt-12 pb-8" aria-labelledby="page-title">
-        <div class="mx-auto flex w-full max-w-page flex-col items-start gap-6 px-5 md:flex-row">
-            <Image
-                src={logo}
-                alt={`${site.shortName} logo`}
-                width={200}
-                height={200}
-                class="h-auto w-full max-w-50 flex-none self-center md:w-36 md:self-start"
-                loading="eager"
-            />
-            <div>
-                <h1 id="page-title" class="mb-3 text-3xl/tight font-bold md:text-4xl/tight">
-                    {site.name}
-                </h1>
-                <p class="max-w-180 text-lg text-muted">{site.description}</p>
-            </div>
+        <div class="mx-auto w-full max-w-page px-5">
+            <h1 id="page-title" class="mb-3 text-3xl/tight font-bold md:text-4xl/tight">
+                {site.name}
+            </h1>
+            <p class="max-w-180 text-lg text-muted">{site.description}</p>
         </div>
     </section>
 
