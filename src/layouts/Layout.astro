@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang="en-CA">
+<html lang="en-CA" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,13 +22,22 @@ const year = new Date().getFullYear();
     <title>{title}</title>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+    <a
+      class="absolute -top-12 left-4 z-100 rounded-lg bg-primary-dark px-4 py-2 text-white focus:top-4"
+      href="#main"
+    >
+      Skip to main content
+    </a>
 
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="/">{site.name}</a>
+    <header class="bg-primary-dark text-white">
+      <div
+        class="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4"
+      >
+        <a class="text-lg font-bold text-white no-underline hover:underline" href="/">
+          {site.name}
+        </a>
         <nav aria-label="Primary">
-          <ul>
+          <ul class="flex flex-wrap gap-x-5 gap-y-1 [&_a]:text-white [&_a:hover]:decoration-2">
             <li><a href="#mission">Mission</a></li>
             <li><a href="#executives">Executive</a></li>
             <li><a href="#fundraisers">Fundraisers</a></li>
@@ -38,77 +47,15 @@ const year = new Date().getFullYear();
       </div>
     </header>
 
-    <main id="main" tabindex="-1">
+    <main id="main" tabindex="-1" class="focus:outline-none">
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="container">
+    <footer class="mt-12 border-t border-border bg-surface py-6 text-sm text-muted">
+      <div class="mx-auto w-full max-w-page px-5">
         <p>&copy; {year} {site.name}</p>
       </div>
     </footer>
   </body>
 </html>
 
-<style>
-  .site-header {
-    background: var(--color-primary-dark);
-    color: #fff;
-  }
-
-  .header-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem 1.5rem;
-    padding-block: 1rem;
-  }
-
-  .brand {
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.125rem;
-    text-decoration: none;
-  }
-
-  .brand:hover {
-    color: #fff;
-    text-decoration: underline;
-  }
-
-  nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 1.25rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  nav a {
-    color: #fff;
-  }
-
-  nav a:hover {
-    color: #fff;
-    text-decoration-thickness: 2px;
-  }
-
-  main:focus {
-    outline: none;
-  }
-
-  .site-footer {
-    margin-top: 3rem;
-    padding-block: 1.5rem;
-    border-top: 1px solid var(--color-border);
-    background: var(--color-surface);
-    color: var(--color-muted);
-    font-size: 0.9375rem;
-  }
-
-  .site-footer p {
-    margin: 0;
-  }
-</style>
