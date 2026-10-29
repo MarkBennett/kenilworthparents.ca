@@ -47,7 +47,7 @@ export const site = {
     lines: ['c/o École Kenilworth School', '7005 89 Ave NW'],
     city: 'Edmonton',
     province: 'AB',
-    postalCode: 'T6B 0L5',
+    postalCode: 'T6B 0N3',
     country: 'Canada',
   },
 
