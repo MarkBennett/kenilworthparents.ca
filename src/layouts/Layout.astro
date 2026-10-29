@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang="en-CA" class="scroll-pt-32 motion-safe:scroll-smooth md:scroll-pt-16">
+<html lang="en-CA" class="motion-safe:scroll-smooth tall:scroll-pt-[var(--header-height,4rem)]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -30,7 +30,7 @@ const year = new Date().getFullYear();
       Skip to main content
     </a>
 
-    <header class="sticky top-0 z-50 bg-primary-dark text-white">
+    <header class="top-0 z-50 bg-primary-dark text-white tall:sticky">
       <div
         class="mx-auto flex w-full max-w-page flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-4"
       >
@@ -61,12 +61,15 @@ const year = new Date().getFullYear();
 </html>
 
 <script>
-  // Keep anchor jumps clear of the sticky header as its height changes (wrapping, text size).
-  // The scroll-pt-* classes on <html> are the fallback if this doesn't run.
+  // Track the header's height (it changes with wrapping and text size) so anchor jumps
+  // clear it while it's sticky. <html> falls back to 4rem if this doesn't run.
   const header = document.querySelector('header');
   if (header) {
     new ResizeObserver(([entry]) => {
-      document.documentElement.style.scrollPaddingTop = `${entry.borderBoxSize[0].blockSize}px`;
+      document.documentElement.style.setProperty(
+        '--header-height',
+        `${entry.borderBoxSize[0].blockSize}px`,
+      );
     }).observe(header);
   }
 </script>
