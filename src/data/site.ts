@@ -1,6 +1,8 @@
 // Site content for the Kenilworth School Parent Association.
 // Update the values below to change what appears on the home page.
 
+import presidentPhoto from '../assets/president-headshot.jpg';
+
 export interface Fundraiser {
   name: string;
   description: string;
@@ -27,6 +29,8 @@ export const site = {
     // TODO: Confirm the president's name.
     name: 'Mark Bennett',
     title: 'President',
+    /** Square headshot in src/assets; shown as a small round avatar. */
+    photo: presidentPhoto,
   },
 
   contact: {
